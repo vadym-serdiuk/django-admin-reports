@@ -271,7 +271,7 @@ class ReportView(TemplateView, FormMixin):
     def get_form_kwargs(self):
         kwargs = super(ReportView, self).get_form_kwargs()
         if self.request.method in ('GET', 'POST'):
-            form_data = dict([(key, val) for key, val in self.request.GET.iteritems()
+            form_data = dict([(key, val) for key, val in self.request.GET.items()
                               if key not in CONTROL_VARS])
             if form_data:
                 kwargs.update({
@@ -295,7 +295,7 @@ class ReportView(TemplateView, FormMixin):
     def get_context_data(self, **kwargs):
         kwargs = super(ReportView, self).get_context_data(**kwargs)
         kwargs['media'] = self.media
-        export_path = '?%s' % '&'.join(['%s=%s' % item for item in self.request.GET.iteritems()] + [EXPORT_VAR])
+        export_path = '?%s' % '&'.join(['%s=%s' % item for item in self.request.GET.items()] + [EXPORT_VAR])
         form = self.get_form(self.get_form_class())
         if form is not None:
             kwargs['form'] = form
